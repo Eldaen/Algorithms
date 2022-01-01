@@ -7,41 +7,16 @@
 
 import Foundation
 
-func findSmallest(array: Array<Int>) -> Int? {
-	if array.isEmpty {
-		return nil
+//print("Hello")
+
+func countFractal(for value: Int) -> Int {
+	if value == 1 {
+		return 1
 	}
 	
-	var smallestIndex = 0
-	var smallest = array[smallestIndex]
-	
-	for (index, item) in array.enumerated() {
-		if smallest < item {
-			continue
-		} else {
-			smallest = item
-			smallestIndex = index
-		}
-	}
-	
-	return smallestIndex
+	return value * countFractal(for: value - 1)
 }
 
-let testArr = [22, 50, 15, 25, 16, 17, 1, 8, 32]
-print(findSmallest(array: testArr))
+//print(countFractal(for: 7))
 
-func selectionSort(array: Array<Int>) -> Array<Int> {
-	var newArray = [Int]()
-	var searchArray = array
-	
-	for _ in searchArray {
-		if let smallestIndex = findSmallest(array: searchArray) {
-			newArray.append(searchArray.remove(at: smallestIndex))
-		}
-	}
-	
-	return newArray
-}
-
-print(selectionSort(array: testArr))
 
