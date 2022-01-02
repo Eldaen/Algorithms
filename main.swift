@@ -32,26 +32,27 @@ func findMax(_ arr: Array<Int>, currentMax: Int = 0) -> Int {
 	}
 }
 
-func binarySearchRec(_ arr: Array<Int>, minIndex: Int, maxIndex: Int, element: Int) -> Bool {
+func binarySearchRec(_ arr: Array<Int>, element: Int) -> Bool {
+	guard arr.isEmpty != true else { return false }
 	
-	let index = ( maxIndex + minIndex ) / 2
+	let index = ( arr.count - 1 ) / 2
 	let currentElement = arr[index]
 	
 	if currentElement == element {
 		return true
-	} else if minIndex == maxIndex {
+	} else if arr.count == 1 {
 		return false
 	}
 	
 	if element < currentElement {
-		return binarySearchRec(arr, minIndex: minIndex, maxIndex: index - 1, element: element)
+		return binarySearchRec(Array(arr[0..<index]), element: element)
 	} else {
-		return binarySearchRec(arr, minIndex: index + 1, maxIndex: maxIndex, element: element)
+		return binarySearchRec(Array(arr[(index + 1)..<(arr.count)]), element: element)
 	}
 }
 
 func checkArray(_ array: Array<Int>, for element: Int) -> Bool {
-	return binarySearchRec(array, minIndex: 0, maxIndex: array.count - 1, element: element)
+	return binarySearchRec(array, element: element)
 }
 
-print(checkArray([2, 5, 7, 11, 13, 17], for: 22))
+print(checkArray([2, 5, 7, 11, 13, 17], for: 5))
