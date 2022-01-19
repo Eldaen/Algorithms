@@ -7,7 +7,23 @@
 
 import Foundation
 
+/// Проверяет, является ли английская фраза панграммой (содержит все буквы алфавита для теста шрифтов, например)
+func pangramEnglish(string: String) -> Bool {
+	let set = Set(string.lowercased())
+	let result = set.filter {
+		// чтобы пробелы, запятые итд игнорить
+		$0 >= "a" && $0 <= "z"
+	}
+	
+	// В английском алфавите 26 букв
+	return result.count == 26
+}
+//print(pangramEnglish(string: "The quick brown fox jumps over the lazy dog"))
+
 /// Вращает строку на offset количество символов. Переносит из конца в начало.
+// TODO: - Если нужно проверить, является ли строка вращением другой строки,
+// то нужно удвоить строку (абс + абс) и через contain посмотреть.
+// удвоенная строка всегда содержит все вращениям себя
 func rotate(string: String, offset: Int) -> String? {
 	guard string.count > offset else { return nil }
 	let suffix = String(string.suffix(offset))
