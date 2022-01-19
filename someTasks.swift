@@ -7,6 +7,17 @@
 
 import Foundation
 
+/// Вращает строку на offset количество символов. Переносит из конца в начало.
+func rotate(string: String, offset: Int) -> String? {
+	guard string.count > offset else { return nil }
+	let suffix = String(string.suffix(offset))
+	let prefix = String(string.prefix(string.count - offset))
+	
+	return suffix + prefix
+}
+// Optional("wiftTayloy S")
+//print(rotate(string: "Tayloy Swift", offset: 4))
+
 /// Убрать из строки множественные пробелы и оставить только один
 func removeSpaces(string: String) -> String {
 	guard !string.isEmpty else { return string }
@@ -33,7 +44,7 @@ func checkSymbol(string: String, symbol: Character) -> Int {
 }
 ///print(checkSymbol(string: "asdas12edqsacfw21324126Y3UG1H2J3BH1G2BEJQNKI21323QDSADAS", symbol: "3"))
 
-/// Сравнивает, является ли она другой наоборот. Можно решить намного проще через string1.reversed() == string2, не знал
+/// Сравнивает, содержат ли две строки одни и те же символы. Можно решить намного проще через string1.sorted() == string2.sorted(), не знал
 func compareStrings(string1: String, string2: String) -> Bool {
 	let string1Symbols = string1.reduce(into: [:]) { chars, value in
 		chars[value, default: 0] += 1
