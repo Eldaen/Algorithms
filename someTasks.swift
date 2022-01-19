@@ -7,6 +7,24 @@
 
 import Foundation
 
+/// Проверяет, чтобы строки были одинаковой длинны и не отличались больше чем на 3 буквы
+func similarityCheck(string1: String, string2: String) -> Bool {
+	guard string1.count == string2.count else { return false }
+	
+	var differenceCount: Int = 0
+	for (index, character) in string1.enumerated() {
+		if differenceCount >= 3 {
+			return false
+		} else if character == string2[string2.index(string2.startIndex, offsetBy: index)] {
+			continue
+		}
+		differenceCount += 1
+	}
+	return true
+}
+//print(similarityCheck(string1: "asdasd", string2: "asdafg"))
+//print(similarityCheck(string1: "asdasd", string2: "asbfgh"))
+
 /// Проверяет, является ли английская фраза панграммой (содержит все буквы алфавита для теста шрифтов, например)
 func pangramEnglish(string: String) -> Bool {
 	let set = Set(string.lowercased())
