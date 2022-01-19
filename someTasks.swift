@@ -7,7 +7,26 @@
 
 import Foundation
 
+/// Поиск самого длинного префикса для всех слов в массиве
+func findLongestPrefix (strings: [String]) -> String? {
+	guard !strings.isEmpty else { return nil }
+	var result: String = ""
+	
+outer: for (index, character) in strings[0].enumerated() {
+		for word in strings {
+			if character != Array(word)[index] {
+				break outer
+			}
+		}
+		result += String(character)
+	}
+	
+	return result
+}
+//print(findLongestPrefix(strings: ["Swing", "Swizzler", "Swipe", "Sword"]))
+
 /// Проверяет, чтобы строки были одинаковой длинны и не отличались больше чем на 3 буквы
+/// Можно ещё создать Array(string1) и Array(string2) и по ним уже бегать, а не string2.index(string2.startIndex, offsetBy: index)
 func similarityCheck(string1: String, string2: String) -> Bool {
 	guard string1.count == string2.count else { return false }
 	
