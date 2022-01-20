@@ -7,6 +7,14 @@
 
 import Foundation
 
+/// Возводит число в степень, это рекурсивное решение, но есть стандартная функция  pow(Double, Double)
+func powValue (_ value: Int, _ pow: Int) -> Int {
+	guard value > 0, pow > 0 else { return 0 }
+	guard pow != 1 else { return value }
+	return powValue (value, pow - 1) * value
+}
+//print(powValue(2, 4))
+
 /// Генерирует случайное число в заданном диапазоне целых чисел
 func random (min: Int, max: Int) -> Int {
 	return Int.random(in: min...max)
