@@ -7,14 +7,29 @@
 
 import Foundation
 
-/// Поменять местами два числа без использования 3й переменной
-var a = 3
-var b = 5
+/// Проверяет, является ли число простым
+func isPrimeNumber(_ value: Int) -> Bool {
+	guard value != 0 else { return false }
+	guard value >= 2 else { return true }
+	
+	for index in 2..<( (value / 2) + 1 ) {
+		if value.isMultiple(of: index) {
+			return false
+		}
+	}
+	return true
+}
+//print(isPrimeNumber(13))
 
-a = a + b
-b = a - b
-a = a - b
+/// Поменять местами два числа без использования 3й переменной
+//var a = 3
+//var b = 5
+//
+//a = a + b
+//b = a - b
+//a = a - b
 // или swap(&a, &b)
+// или (a, b) = (b, a)
 
 /// Возводит число в степень, это рекурсивное решение, но есть стандартная функция  pow(Double, Double)
 func powValue (_ value: Int, _ pow: Int) -> Int {
