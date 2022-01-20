@@ -7,6 +7,22 @@
 
 import Foundation
 
+/// Пишет Three если число делется на 3 без остатка и Five если на 5. Если делится и на 3 и на 5, то Three Five
+func divisionPrinter () {
+	for index in 1...100 {
+		print(index)
+		
+		if index % 3 == 0 && index % 5 == 0{
+			print("Three Five")
+		} else if index % 3 == 0 {
+			print("Three")
+		} else if index % 5 == 0 {
+			print("Five")
+		}
+	}
+}
+//divisionPrinter()
+
 /// Возвращает строчку со словами в том же порядке, но перевёрнутыми
 func reverseWords(_ string: String) -> String {
 	guard !string.isEmpty else { return "" }
