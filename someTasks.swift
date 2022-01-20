@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// Генерирует случайное число в заданном диапазоне целых чисел
+func random (min: Int, max: Int) -> Int {
+	return Int.random(in: min...max)
+}
+//print(random(min: 1, max: 100))
+
 /// Пишет Three если число делется на 3 без остатка и Five если на 5. Если делится и на 3 и на 5, то Three Five
 func divisionPrinter () {
 	for index in 1...100 {
