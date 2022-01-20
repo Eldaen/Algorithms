@@ -7,7 +7,38 @@
 
 import Foundation
 
+/// Возвращает строчку со словами в том же порядке, но перевёрнутыми
+func reverseWords(_ string: String) -> String {
+	guard !string.isEmpty else { return "" }
+	
+	return string.split(separator: " ")
+		.map { String($0.reversed()) }
+		.joined(separator: " ")
+}
+//print(reverseWords("Hello world from some person"))
+
+/// Второй вариант вывода кол-ва вхождений, узнал что можно вот так писать (key, value) -> String чтобы возвращать что нужно
+func countInclusions2(_ string: String) -> String {
+	return string.reduce(into: [:]) { array, symbol in
+		array[symbol, default: 0] += 1
+	}.compactMap { (key, value) -> String in
+		"\(key)\(value)"
+	}.joined(separator: "")
+}
+//print(countInclusions("fffaa"))
+
+/// Считает кол-во повторяющихся символов и выводит строку символ - вхождение, пример покажет f3a2
+func countInclusions(_ string: String) -> String {
+	return string.reduce(into: [:]) { array, symbol in
+		array[symbol, default: 0] += 1
+	}.reduce("") {
+		$0 + String($1.key) + String($1.value)
+	}
+}
+//print(countInclusions("fffaa"))
+
 /// Поиск самого длинного префикса для всех слов в массиве
+/// Можно сделать через hasPrefix, сразу проверять слова на префикс из нескольких букв, хранить лучший префикс
 func findLongestPrefix (strings: [String]) -> String? {
 	guard !strings.isEmpty else { return nil }
 	var result: String = ""
