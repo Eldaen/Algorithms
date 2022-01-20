@@ -7,6 +7,15 @@
 
 import Foundation
 
+/// Поменять местами два числа без использования 3й переменной
+var a = 3
+var b = 5
+
+a = a + b
+b = a - b
+a = a - b
+// или swap(&a, &b)
+
 /// Возводит число в степень, это рекурсивное решение, но есть стандартная функция  pow(Double, Double)
 func powValue (_ value: Int, _ pow: Int) -> Int {
 	guard value > 0, pow > 0 else { return 0 }
