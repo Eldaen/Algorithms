@@ -7,19 +7,30 @@
 
 import Foundation
 
-/// Проверяет, является ли число простым
-func isPrimeNumber(_ value: Int) -> Bool {
-	guard value != 0 else { return false }
-	guard value >= 2 else { return true }
+/// Бинарный поворот, превращает 0010000 в 0000100, всегда 8 цифр
+func binaryReverse(_ value: UInt) -> UInt {
+	guard value > 0 else { return 0 }
+	var binaryString = String(value, radix: 2).compactMap { String($0) }
 	
-	for index in 2..<( (value / 2) + 1 ) {
-		if value.isMultiple(of: index) {
-			return false
-		}
+	if binaryString.count < 8 {
+		let missingZeroes = 8 - binaryString.count
+		binaryString = Array(repeating: 0, count: missingZeroes).map { String($0) } + binaryString
+		
 	}
-	return true
+	
+	let reversed = binaryString
+					.reversed()
+					.joined(separator: "")
+	
+	return UInt(reversed, radix: 2) ?? 0
 }
-//print(isPrimeNumber(13))
+//print(binaryReverse(32))
+// 4
+
+
+//BINARY STRING
+// RADIX это основание, т.е. в шестнадцатеричной системе это будет 16
+//let binaryString = String(someNumber, radix: 2)
 
 /// Поменять местами два числа без использования 3й переменной
 //var a = 3
