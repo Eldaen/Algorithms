@@ -7,6 +7,14 @@
 
 import Foundation
 
+/// Сортирует массив в буквами или цифрами по возростанию и возвращает первые N элементов
+extension Collection where Iterator.Element: Comparable {
+	func sortUpToN(_ upTo: Int) -> [Iterator.Element] {
+		return Array(self.sorted().prefix(upTo: upTo))
+	}
+}
+//print([1,5,10,6,8,4].sortUpToN(3))
+//print(["a", "k", "l", "b", "f"].sortUpToN(3))
 
 /// Счетает кол-во повторений указанной цифры в коллекции типа INT
 extension Collection where Iterator.Element == Int {
