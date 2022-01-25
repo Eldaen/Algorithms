@@ -7,7 +7,23 @@
 
 import Foundation
 
-// Сложение всех чисел в строке
+
+/// Счетает кол-во повторений указанной цифры в коллекции типа INT
+extension Collection where Iterator.Element == Int {
+	func repetition (digit: Character) -> Int {
+		return self.map { String($0).reduce(0) { $1 == digit ? $0 + 1 : $0  } }.reduce(0, +)
+	}
+}
+//print([5,15,25,55,525].repetition(digit: "5"))
+
+/// Взятие квадратного корня и округления до целочисленного, sqrt использовать нельзя
+/// Про pow в задании ничего не было, так что возвести в степени 1/2 мы можем.
+func squareRoot (_ value: Int) -> Int {
+	return Int(pow(Double(value), 0.5))
+}
+//print(squareRoot(121))
+
+// Сложение всех чисел от 0 до 9 в строке
 func numbersAddition (_ string: String) -> Int {
 	guard !string.isEmpty else { return 0 }
 	return string.compactMap{ Int(String($0)) }
@@ -26,7 +42,7 @@ func numbersOnly(_ string: String) -> Bool {
 
 /// Бинарный поворот, превращает 0010000 в 0000100, всегда 8 цифр
 /// Radix есть и у INT и у UInt
-func binaryReverse(_ value: UInt) -> UInt {
+func binaryReverse (_ value: UInt) -> UInt {
 	guard value > 0 else { return 0 }
 	var binaryString = String(value, radix: 2)
 	
