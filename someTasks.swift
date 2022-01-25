@@ -7,6 +7,15 @@
 
 import Foundation
 
+/// Сортирует массив строк по убыванию длинны строки
+extension Collection where Iterator.Element == String {
+	func stringSort() -> [String] {
+		guard !self.isEmpty else { return [] }
+		return self.sorted { $0.count > $1.count }
+	}
+}
+//print(["aaa", "b", "aaaaca", "bb", "cacb"].stringSort())
+
 /// Сортирует массив в буквами или цифрами по возростанию и возвращает первые N элементов
 extension Collection where Iterator.Element: Comparable {
 	func sortUpToN(_ upTo: Int) -> [Iterator.Element] {
