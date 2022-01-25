@@ -7,6 +7,23 @@
 
 import Foundation
 
+/// Возвращает медианную величину INT коллекции.
+/// Если в коллекции чётное кол-во элементов, то берёт среднее арифметическое между 2 средними
+extension Collection where Iterator.Element == Int {
+	func medianSorted() -> Int? {
+		guard !self.isEmpty else { return nil }
+		let middle = self.count / 2
+		let sorted = self.sorted()
+		
+		if self.count % 2 == 0 {
+			return (sorted[middle - 1] + sorted[middle]) / 2
+		} else {
+			return sorted[middle]
+		}
+	}
+}
+//print([5,1,12,312,5,12,3,2,12, 3].medianSorted())
+
 /// Сортирует массив строк по убыванию длинны строки
 extension Collection where Iterator.Element == String {
 	func stringSort() -> [String] {
