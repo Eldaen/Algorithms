@@ -10,18 +10,15 @@ import Foundation
 /// Бинарный поворот, превращает 0010000 в 0000100, всегда 8 цифр
 func binaryReverse(_ value: UInt) -> UInt {
 	guard value > 0 else { return 0 }
-	var binaryString = String(value, radix: 2).compactMap { String($0) }
+	var binaryString = String(value, radix: 2)
 	
 	if binaryString.count < 8 {
 		let missingZeroes = 8 - binaryString.count
-		binaryString = Array(repeating: 0, count: missingZeroes).map { String($0) } + binaryString
+		binaryString = String(repeating: "0", count: missingZeroes) + binaryString
 		
 	}
 	
-	let reversed = binaryString
-					.reversed()
-					.joined(separator: "")
-	
+	let reversed = String(binaryString.reversed())
 	return UInt(reversed, radix: 2) ?? 0
 }
 //print(binaryReverse(32))
