@@ -7,7 +7,25 @@
 
 import Foundation
 
+// Сложение всех чисел в строке
+func numbersAddition (_ string: String) -> Int {
+	guard !string.isEmpty else { return 0 }
+	return string.compactMap{ Int(String($0)) }
+		.reduce(0, +)
+}
+//print(numbersAddition("b1a2c3"))
+
+/// Получает строку и проверяет, что там только цифры, не символы или буквы
+/// Приводим к INT-у через СompactMap и он откинет nil-ы
+func numbersOnly(_ string: String) -> Bool {
+	guard !string.isEmpty else { return false }
+	let numbers = string.compactMap{ Int(String($0)) }
+	return string.count == numbers.count ? true : false
+}
+//print(numbersOnly("asdas1212"))
+
 /// Бинарный поворот, превращает 0010000 в 0000100, всегда 8 цифр
+/// Radix есть и у INT и у UInt
 func binaryReverse(_ value: UInt) -> UInt {
 	guard value > 0 else { return 0 }
 	var binaryString = String(value, radix: 2)
